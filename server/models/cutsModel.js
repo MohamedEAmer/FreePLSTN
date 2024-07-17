@@ -1,6 +1,6 @@
-const {Schema , model} = require('mongoose')
+const { Schema, model } = require('mongoose');
 
-const courseSchema = new Schema({
+const cutsSchema = new Schema({
     order:{type: String },//which Q
     exam:{type: Schema.Types.String,  ref:"Exam"},
     mask:{type: Schema.Types.String,  ref:"Mask"},
@@ -10,4 +10,4 @@ const courseSchema = new Schema({
 } , {timestamps: true})
 
 
-module.exports = model("Cuts" , courseSchema)
+module.exports = model("Cuts", cutsSchema);

@@ -1,21 +1,19 @@
-const {Schema , model} = require('mongoose')
+const { Schema, model } = require('mongoose');
 
-const courseSchema = new Schema({
-    title: { type: String , required: true},
-    //type: { type: String , required: true},// to know if it is for class or printing(report or exam)
-    category: { type: String , enum: ["Math","English","Science","History","Arabic","Geography","French","Arts"],
-        message: "VALUE is not supported"},
-    description: { type: String , required: true},
+
+const examSchema = new Schema({
+    name: { type: String , required: true},
+    MCQs: { type: Number , required: true},
+    TFs: { type: Number , required: true},
+    Text: { type: Number , required: true},
+    textLines: [{ type: Number, required: true }],
+    examCode:{ type: String , required: true},
+    totalMarks:{ type: Number , required: true},
     creator: { type: Schema.Types.ObjectId , ref: "User"},
     instructor:{type: Schema.Types.String,  ref:"User"},
-    content:{type: Schema.Types.String, required: true},//for storing the exam model data
-    classesIn: [{
-        id: {
-          type: Schema.Types.ObjectId,
-          ref: 'Class',
-        }
-      }]//if it is a report
+    examPdfFile: { type: String,},
+    myMask: {type: Schema.Types.ObjectId,ref: 'Mask',},
+    mySettings: {type: Schema.Types.ObjectId,ref: 'Settings',},
+
 } , {timestamps: true})
-
-
-module.exports = model("Exam" , courseSchema)
+module.exports = model("Exam", examSchema);

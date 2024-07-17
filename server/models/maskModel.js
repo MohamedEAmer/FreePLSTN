@@ -1,16 +1,13 @@
-const {Schema , model} = require('mongoose')
+const { Schema, model } = require('mongoose');
 
-const courseSchema = new Schema({
-    title: { type: String , required: true},
-    category: { type: String , enum: ["Math","English","Science","History","Arabic","Geography","French","Arts"],
-        message: "VALUE is not supported"},
+const maskSchema = new Schema({
+    name: { type: String , required: true},
+    MCQs: { type: Number , required: true},
+    TFs: { type: Number , required: true},
+    Text: { type: Number , required: true},
     creator: { type: Schema.Types.ObjectId , ref: "User"},
     instructor:{type: Schema.Types.String,  ref:"User"},
-    maskType: { type: String , required: true},//exam or report
-    content: { type: String , required: true},//mask data / media (pdf)
-    contentID:{type: Schema.Types.String,  ref:"Exam"},//my without color exam or report
-    // contentID2:{type: Schema.Types.String,  ref:"Report"},//my without color exam or report
+    maskPdfFile: { type: String , required: true},//mask data / media (pdf)
+    exam:{type: Schema.Types.ObjectId,  ref:"Exam"},//my without color exam or report
 } , {timestamps: true})
-
-
-module.exports = model("Mask" , courseSchema)
+module.exports = model("Mask", maskSchema);

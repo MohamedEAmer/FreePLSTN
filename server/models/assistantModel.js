@@ -1,9 +1,9 @@
-const {Schema , model} = require('mongoose')
+const { Schema, model } = require('mongoose');
 
-const courseSchema = new Schema({
-    name: { type: String , required: true},
-    category: { type: String , enum: ["Math","English","Science","History","Arabic","Geography","French","Arts"],
-        message: "VALUE is not supported"},
+
+const assistantSchema = new Schema({
+    enteredData:{ type: String , required: true},
+    examName: { type: String , required: true},
     creator: { type: Schema.Types.ObjectId , ref: "User"},
     instructor:{type: Schema.Types.String,  ref:"User"},
     data: [{
@@ -12,9 +12,8 @@ const courseSchema = new Schema({
         ref: 'Cuts',
       }
     }],
-    exam:{type: Schema.Types.String,  ref:"Exam"},
-    mask:{type: Schema.Types.String,  ref:"Mask"},
+    exam:{type: Schema.Types.ObjectId,  ref:"Exam"},
+    mask:{type: Schema.Types.ObjectId,  ref:"Mask"},
 } , {timestamps: true})
 
-
-module.exports = model("Assistant" , courseSchema)
+module.exports = model("Assistant", assistantSchema);

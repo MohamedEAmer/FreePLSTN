@@ -1,5 +1,8 @@
-const jwt = require('jsonwebtoken')
-const HttpError = require('../models/errorModel')
+const jwt = require('jsonwebtoken');
+const HttpError = require('../models/errorModel.js');
+
+
+
 
 
 const authMiddleware = async ( req , res , next)=>{
@@ -21,4 +24,4 @@ const authMiddleware = async ( req , res , next)=>{
 }
 
 
-module.exports = authMiddleware
+module.exports = authMiddleware;
